@@ -56,6 +56,14 @@ if(${FIRST_BUILD}) # since inverted this is actually NOT(${FIRST_BUILD})
     configure_file(${CMAKE_CURRENT_LIST_DIR}/tinycc/libtcc.h ${CMAKE_CURRENT_LIST_DIR}/romfs/libtcc.h COPYONLY)
     configure_file(${CMAKE_CURRENT_LIST_DIR}/tinycc/libtcc1.a ${CMAKE_CURRENT_LIST_DIR}/romfs/libtcc1.a COPYONLY)
     configure_file(${CMAKE_CURRENT_LIST_DIR}/musl/lib/libc.a ${CMAKE_CURRENT_LIST_DIR}/romfs/musl_libc.a COPYONLY)
+
+    add_custom_command(
+        TARGET LIBMUSL
+        POST_BUILD
+        COMMAND python
+        ARGS ${CMAKE_CURRENT_LIST_DIR}/libc.py
+        WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+    )
 else()
     file(MAKE_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/romfs)
 endif()

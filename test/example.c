@@ -1,6 +1,5 @@
 #! -I../libs/
-#include "stdbool.h"
-#include "stdio.h"
+#include <libc>
 #include "empty.cpp"
 
 
